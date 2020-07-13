@@ -87,7 +87,7 @@ const typeDefs = gql`
   type Query {
     launches(limit: Int): [Launches]
     launch(flight_number: Int): Launch
-    rockets: Rockets
+    rockets: [Rockets]
     rocket: Rocket
   }
   type Launches {
@@ -96,7 +96,7 @@ const typeDefs = gql`
     launch_year: String
     launch_date_local: String
     launch_success: Boolean
-    rocket: Rockets
+    rockets: Rockets
   }
   type Launch {
     flight_number: Int
