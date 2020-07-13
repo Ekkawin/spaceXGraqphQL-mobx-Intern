@@ -39,3 +39,11 @@
 .spcaceXbackground {
   background-color: black;
 }
+.launchdetailbutton {
+  background-color: gray !important;
+  border: none !important;
+  border-radius: 0.25rem !important;
+  color: white !important ;
+  width: 9rem !important;
+  height: 2.25rem !important;
+}

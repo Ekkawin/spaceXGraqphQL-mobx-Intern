@@ -14,8 +14,11 @@
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "node server.js",
-    "dev": "concurrently -r -k \"yarn server\" \"yarn client\""
+    "client": "cd client && yarn dev",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
   }
 }

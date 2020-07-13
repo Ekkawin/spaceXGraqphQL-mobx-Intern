@@ -25,10 +25,7 @@ const ShowItem = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.launches.slice(1, 6).map((e) => {
-    console.log('HI');
-    return <SpaceXBody data={e} />;
-  });
+  return <SpaceXBody data={data.launches} />;
 };
 
 const client = new ApolloClient({
