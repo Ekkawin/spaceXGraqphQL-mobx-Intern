@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { ContentBlock } from './ContentBlock';
 const handleScroll = (input) => {
@@ -6,7 +6,12 @@ const handleScroll = (input) => {
 };
 
 export const SpaceXBody = (prop) => {
+  const [fetchData, setFetchData] = useState([]);
+  const setNumberOfFetchData = prop.setNumberOfFetchData;
+  const numberOfFetchData = prop.numberOfFetchData;
+  const data = prop.data;
   useEffect(() => {
+    setFetchData(prop.data);
     window.addEventListener('scroll', (e) => {
       handleScroll(window);
     });
@@ -17,7 +22,6 @@ export const SpaceXBody = (prop) => {
     };
   }, []);
   console.log(window);
-  const data = prop.data;
 
   return (
     <div className="spcaceXbackground w-screen h-full">
@@ -31,9 +35,12 @@ export const SpaceXBody = (prop) => {
             <span className="bg-red-600 px-4 py-0 mr-2" />= Fail
           </div>
         </div>
-        {data.map((e) => {
+        {fetchData.map((e) => {
           return <ContentBlock data={e} />;
         })}
+        <Button onClick={() => setNumberOfFetchData(numberOfFetchData + 5)}>
+          load more
+        </Button>
       </div>
     </div>
   );

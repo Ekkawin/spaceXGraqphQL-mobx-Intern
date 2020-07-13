@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ApolloClient from 'apollo-boost';
@@ -10,8 +10,8 @@ import 'antd/dist/antd.css';
 import { SpaceXBody } from './components/SpaceXBody';
 
 const LAUNCHES_QUERY = gql`
-  query LaunchesQurey {
-    launches {
+  query LaunchesQurey($limit: Int) {
+    launches(limit: $limit) {
       flight_number
       mission_name
       launch_date_local
@@ -20,12 +20,22 @@ const LAUNCHES_QUERY = gql`
   }
 `;
 const ShowItem = () => {
-  const { loading, error, data } = useQuery(LAUNCHES_QUERY);
-  console.log(data);
+  const [numberOfFetchData, setNumberOfFetchData] = useState(5);
+  const { loading, error, data } = useQuery(LAUNCHES_QUERY, {
+    variables: { limit: numberOfFetchData },
+  });
+  console.log('loading', loading);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return <SpaceXBody data={data.launches} />;
+  return (
+    <SpaceXBody
+      loading={false}
+      data={data.launches}
+      setNumberOfFetchData={setNumberOfFetchData}
+      numberOfFetchData={numberOfFetchData}
+    />
+  );
 };
 
 const client = new ApolloClient({
