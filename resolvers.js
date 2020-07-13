@@ -63,7 +63,13 @@ const resolvers = {
     },
     async rockets() {
       let res = await axios.get('https://api.spacexdata.com/v3/rockets');
-      return res;
+      return res.data.rocket.map((e) => {
+        return {
+          rocket_id: e.rocket.rocket_id,
+          rocket_name: e.rocket.rocket_name,
+          rocket_type: e.rocket.rocket_type,
+        };
+      });
     },
     async rocket() {
       let res = await axios.get(
