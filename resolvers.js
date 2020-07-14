@@ -7,7 +7,6 @@ const resolvers = {
         let res = await axios.get('https://api.spacexdata.com/v3/launches');
 
         return res.data.map((e) => {
-          console.log(e.rocket.rocket_name);
           return {
             flight_number: e.flight_number,
 
@@ -33,7 +32,6 @@ const resolvers = {
         );
         console.log('hiiii');
         return res.data.map((e) => {
-          console.log(e.rocket.rocket_name);
           return {
             flight_number: e.flight_number,
 
