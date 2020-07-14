@@ -44,12 +44,10 @@ function App() {
   const [numberOfFetchData, setNumberOfFetchData] = useState(5);
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <ShowItem
-          numberOfFetchData={numberOfFetchData}
-          setNumberOfFetchData={setNumberOfFetchData}
-        />
-      </Router>
+      <ShowItem
+        numberOfFetchData={numberOfFetchData}
+        setNumberOfFetchData={setNumberOfFetchData}
+      />
     </ApolloProvider>
   );
 }
