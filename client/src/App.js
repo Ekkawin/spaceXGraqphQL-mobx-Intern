@@ -19,18 +19,16 @@ const LAUNCHES_QUERY = gql`
     }
   }
 `;
-const ShowItem = () => {
-  const [numberOfFetchData, setNumberOfFetchData] = useState(5);
+const ShowItem = ({ numberOfFetchData, setNumberOfFetchData }) => {
+  console.log('numberoffectchdata', numberOfFetchData);
   const { loading, error, data } = useQuery(LAUNCHES_QUERY, {
     variables: { limit: numberOfFetchData },
   });
-  console.log('loading', loading);
-  if (loading) return <p>Loading...</p>;
+  if (loading && data === undefined) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   return (
     <SpaceXBody
-      loading={false}
       data={data.launches}
       setNumberOfFetchData={setNumberOfFetchData}
       numberOfFetchData={numberOfFetchData}
@@ -43,9 +41,13 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [numberOfFetchData, setNumberOfFetchData] = useState(5);
   return (
     <ApolloProvider client={client}>
-      <ShowItem />
+      <ShowItem
+        numberOfFetchData={numberOfFetchData}
+        setNumberOfFetchData={setNumberOfFetchData}
+      />
     </ApolloProvider>
   );
 }

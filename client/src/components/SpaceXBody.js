@@ -1,27 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { ContentBlock } from './ContentBlock';
-const handleScroll = (input) => {
-  console.log(input);
-};
 
-export const SpaceXBody = (prop) => {
-  const [fetchData, setFetchData] = useState([]);
-  const setNumberOfFetchData = prop.setNumberOfFetchData;
-  const numberOfFetchData = prop.numberOfFetchData;
-  const data = prop.data;
+export const SpaceXBody = (props) => {
+  const loadContent = () => {
+    return setNumberOfFetchData(numberOfFetchData + 5);
+  };
+  const handScroll = (value) => {
+    const window = value.innerHeight + value.pageYOffset;
+    const clientscreen = document.getElementsByClassName(
+      'spcaceXbackground w-screen h-full'
+    );
+    const clientHeight = clientscreen[0].clientHeight;
+    console.log(window, clientHeight);
+    if (window + 10 >= clientHeight) {
+      console.log('loadconetent');
+      return loadContent();
+    }
+  };
+  console.log('new data');
+  const { numberOfFetchData, setNumberOfFetchData, data } = props;
+  console.log('INCOMMING DATA', data);
   useEffect(() => {
-    setFetchData(prop.data);
-    window.addEventListener('scroll', (e) => {
-      handleScroll(window);
-    });
-    return () => {
-      window.removeEventListener('scroll', (e) => {
-        handleScroll(window);
-      });
+    const clientscreen = document.getElementsByClassName(
+      'spcaceXbackground w-screen h-full'
+    );
+    const a = () => {
+      handScroll(window);
     };
-  }, []);
-  console.log(window);
+    window.addEventListener('scroll', a);
+    // window.removeEventListener('scroll', (e) => {
+    //   handScroll(window);
+    // });
+    return () => {
+      window.removeEventListener('scroll', a);
+    };
+  }, [numberOfFetchData]);
 
   return (
     <div className="spcaceXbackground w-screen h-full">
@@ -35,10 +49,15 @@ export const SpaceXBody = (prop) => {
             <span className="bg-red-600 px-4 py-0 mr-2" />= Fail
           </div>
         </div>
-        {fetchData.map((e) => {
+        {data.map((e) => {
           return <ContentBlock data={e} />;
         })}
-        <Button onClick={() => setNumberOfFetchData(numberOfFetchData + 5)}>
+        <Button
+          onClick={() => {
+            console.log('click');
+            return loadContent();
+          }}
+        >
           load more
         </Button>
       </div>
