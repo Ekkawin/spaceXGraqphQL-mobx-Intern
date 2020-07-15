@@ -2,11 +2,9 @@ import React from 'react';
 import { Button } from 'antd';
 import { stores } from '../stores/dataStore';
 import { toJS } from 'mobx';
+import { LaunchButton } from 'components/LaunchButton';
+import { Link } from 'react-router-dom';
 export const ContentBlock = (props) => {
-  const { launches } = stores;
-
-  console.log('priting launches', toJS(launches));
-
   const { data } = props;
   const date =
     data.launch_date_local.substring(0, 10) +
@@ -27,12 +25,10 @@ export const ContentBlock = (props) => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <Button
-            className="launchdetailbutton"
-            onClick={() => console.log('onclick')}
-          >
-            Luanch Detail
-          </Button>
+          <Link to={`/LaunchButton/${data.flight_number}`}>
+            <Button className="launchdetailbutton">Launch Detail</Button>
+          </Link>
+          ;
         </div>
       </div>
       <div className="text-white">

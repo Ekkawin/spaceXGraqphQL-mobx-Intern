@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { ContentBlock } from './ContentBlock';
 import { stores } from '../stores/dataStore';
-
-export const SpaceXBody = (props) => {
+import { toJS } from 'mobx';
+import { observer } from 'mobx-react';
+export const SpaceXBody = observer((props) => {
+  const { launches } = stores;
   const loadContent = () => {
     return setNumberOfFetchData(numberOfFetchData + 5);
   };
@@ -21,8 +23,12 @@ export const SpaceXBody = (props) => {
   };
   console.log('new data');
   const { numberOfFetchData, setNumberOfFetchData, data } = props;
-  console.log('INCOMMING DATA', data);
-  stores.setLaunches(data);
+  useEffect(() => {
+    console.log('data', data);
+    if (data) {
+      stores.setLaunches(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     const clientscreen = document.getElementsByClassName(
@@ -40,6 +46,10 @@ export const SpaceXBody = (props) => {
     };
   }, [numberOfFetchData]);
 
+  console.log('earth', toJS(launches));
+  if (!launches) {
+    return;
+  }
   return (
     <div className="spcaceXbackground w-screen h-full">
       <div className="flex flex-col bg-transparent items-center">
@@ -52,9 +62,10 @@ export const SpaceXBody = (props) => {
             <span className="bg-red-600 px-4 py-0 mr-2" />= Fail
           </div>
         </div>
-        {data.map((e) => {
-          return <ContentBlock data={e} />;
-        })}
+        {launches &&
+          launches.map((e) => {
+            return <ContentBlock data={toJS(e)} />;
+          })}
         <Button
           onClick={() => {
             console.log('click');
@@ -66,4 +77,4 @@ export const SpaceXBody = (props) => {
       </div>
     </div>
   );
-};
+});
