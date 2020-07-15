@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button } from 'antd';
-export const ContentBlock = (prop) => {
-  const data = prop.data;
+import { stores } from '../stores/dataStore';
+import { toJS } from 'mobx';
+export const ContentBlock = (props) => {
+  const { launches } = stores;
+
+  console.log('priting launches', toJS(launches));
+
+  const { data } = props;
   const date =
     data.launch_date_local.substring(0, 10) +
     data.launch_date_local.substring(11, 16);
