@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { ContentBlock } from './ContentBlock';
+import { stores } from '../stores/dataStore';
 
 export const SpaceXBody = (props) => {
   const loadContent = () => {
@@ -21,6 +22,8 @@ export const SpaceXBody = (props) => {
   console.log('new data');
   const { numberOfFetchData, setNumberOfFetchData, data } = props;
   console.log('INCOMMING DATA', data);
+  stores.setLaunches(data);
+
   useEffect(() => {
     const clientscreen = document.getElementsByClassName(
       'spcaceXbackground w-screen h-full'
