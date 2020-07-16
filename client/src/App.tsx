@@ -12,17 +12,6 @@ import { Route } from 'react-router-dom';
 import { ShowItems } from 'components/ShowItems';
 import { LaunchButton } from 'components/LaunchButton';
 
-const LAUNCHES_QUERY = gql`
-  query LaunchesQurey($limit: Int) {
-    launches(limit: $limit) {
-      flight_number
-      mission_name
-      launch_date_local
-      launch_success
-    }
-  }
-`;
-
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
 });

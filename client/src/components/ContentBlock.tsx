@@ -10,7 +10,7 @@ export const ContentBlock = (props) => {
     data.launch_date_local.substring(0, 10) +
     data.launch_date_local.substring(11, 16);
   return (
-    <div className="text-gray-900 bg-spacexitems w-9/12 h-40 mt-16 px-6">
+    <div className="text-gray-900 bg-spacexitems w-9/12 h-40 mt-8 px-6">
       <div className="grid grid-cols-2 h-20">
         <div className="flex items-center">
           <div className="text-4xl text-white">
