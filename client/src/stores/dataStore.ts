@@ -16,7 +16,7 @@ class DataStore {
 
   @observable launches = [];
   @action setLaunches = (data) => {
-    this.launches = {
+    this.launches = [
       ...this.launches,
       ...(data || {}),
       //     {
@@ -26,8 +26,7 @@ class DataStore {
       // launch_date_local: data.launch_date_local,
       //       launch_success: data.launch_success,
       //     },
-    };
-    console.log('2', toJS(this.launches));
+    ];
 
     return this.launches;
   };
