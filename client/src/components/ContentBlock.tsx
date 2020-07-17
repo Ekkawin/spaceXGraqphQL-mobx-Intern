@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { stores } from '../stores/dataStore';
 import { toJS } from 'mobx';
-import { LaunchButton } from 'components/LaunchButton';
+import { LaunchButton } from './LaunchButton';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 export const ContentBlock = (props) => {
   const { data } = props;
+  const sendData = async () => {
+    const res = await axios.post('http://localhost:5000/getdata', {
+      flight_number: data.flight_number,
+      mission_name: data.mission_name,
+      launch_year: data.launch_year,
+      launch_date_local: data.launch_data_local,
+      launch_success: data.launch_success,
+    });
+    console.log('send data from front end');
+  };
+  useEffect(() => {
+    sendData();
+  }, []);
+
   const date =
     data.launch_date_local.substring(0, 10) +
     data.launch_date_local.substring(11, 16);
@@ -28,7 +43,6 @@ export const ContentBlock = (props) => {
           <Link to={`/LaunchButton/${data.flight_number}`}>
             <Button className="launchdetailbutton">Launch Detail</Button>
           </Link>
-          ;
         </div>
       </div>
       <div className="text-white">

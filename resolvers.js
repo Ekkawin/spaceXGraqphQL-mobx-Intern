@@ -76,6 +76,11 @@ const resolvers = {
       return res;
     },
   },
+  Mutation: {
+    async changeLaunch() {
+      console.log('done change information from mutation apollo');
+    },
+  },
 };
 
 module.exports = resolvers;

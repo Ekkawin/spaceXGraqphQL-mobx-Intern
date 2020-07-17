@@ -5,6 +5,23 @@ import { stores } from '../stores/dataStore';
 import { useParams, useHistory } from 'react-router-dom';
 import { LeftSquareFilled } from '@ant-design/icons';
 import { Input, Button } from 'antd';
+import { gql } from 'apollo-boost';
+const UPDATE_LAUNCHESDATA = gql`
+  mutation UpdateLaunches($flight: Int) {
+    launches(flight: $flight) {
+      flight_number
+      mission_name
+      launch_year
+      launch_date_local
+      launch_success
+      rockets {
+        rocket_id
+        rocket_name
+        rocket_type
+      }
+    }
+  }
+`;
 
 export const LaunchButton = observer((props) => {
   const { launches } = stores;

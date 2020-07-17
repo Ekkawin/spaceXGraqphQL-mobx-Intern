@@ -110,5 +110,8 @@ const typeDefs = gql`
   type Rocket {
     rocket_id: String
   }
+  type Mutation {
+    launches(flight: Int): [Launches]
+  }
 `;
 module.exports = typeDefs;
