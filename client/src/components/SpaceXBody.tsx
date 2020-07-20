@@ -28,7 +28,6 @@ export const SpaceXBody = observer((props) => {
       return loadContent();
     }
   };
-  console.log('new data');
 
   useEffect(() => {
     console.log('data', data);
