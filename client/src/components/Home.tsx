@@ -20,7 +20,7 @@ const LAUNCHES_QUERY = gql`
     }
   }
 `;
-export const ShowItems = () => {
+export const Home = () => {
   const [numberOfFetchData, setNumberOfFetchData] = useState(7);
   console.log('numberoffectchdata', numberOfFetchData);
   const { loading, error, data } = useQuery(LAUNCHES_QUERY, {

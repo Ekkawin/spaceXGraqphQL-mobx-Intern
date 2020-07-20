@@ -91,11 +91,11 @@ const resolvers = {
 
         launch_success: args.data.launch_success,
 
-        // rockets: {
-        //   rocket_id: args.data.rocket.rocket_id,
-        //   rocket_name: args.data.rocket.rocket_name,
-        //   rocket_type: args.data.rocket.rocket_type,
-        // },
+        rockets: {
+          rocket_id: args.data.rocket_id,
+          rocket_name: args.data.rocket_name,
+          rocket_type: args.data.rocket_type,
+        },
       };
     },
   },

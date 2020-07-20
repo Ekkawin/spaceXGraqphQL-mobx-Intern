@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from 'antd';
-import { stores } from '../stores/dataStore';
-import { toJS } from 'mobx';
-import { LaunchButton } from './LaunchButton';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
 export const ContentBlock = (props) => {
   const { data } = props;
 
@@ -38,17 +35,3 @@ export const ContentBlock = (props) => {
     </div>
   );
 };
-
-// const sendData = async () => {
-//   const res = await axios.post('http://localhost:5000/getdata', {
-//     flight_number: data.flight_number,
-//     mission_name: data.mission_name,
-//     launch_year: data.launch_year,
-//     launch_date_local: data.launch_data_local,
-//     launch_success: data.launch_success,
-//   });
-//   console.log('send data from front end');
-// };
-// useEffect(() => {
-//   sendData();
-// }, []);
