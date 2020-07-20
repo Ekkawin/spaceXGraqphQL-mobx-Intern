@@ -90,6 +90,21 @@ const typeDefs = gql`
     rockets: [Rockets]
     rocket: Rocket
   }
+
+  type Mutation {
+    changeLaunches(data: InputLaunches): Launches
+  }
+  input InputLaunches {
+    flight_number: Int
+    mission_name: String
+    launch_year: String
+    launch_date_local: String
+    launch_success: Boolean
+    rocket_id: String
+    rocket_name: String
+    rocket_type: String
+  }
+
   type Launches {
     flight_number: Int
     mission_name: String
@@ -109,9 +124,6 @@ const typeDefs = gql`
   }
   type Rocket {
     rocket_id: String
-  }
-  type Mutation {
-    launches(flight: Int): [Launches]
   }
 `;
 module.exports = typeDefs;

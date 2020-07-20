@@ -2,6 +2,7 @@ const axios = require('axios');
 const resolvers = {
   Query: {
     async launches(parent, args) {
+      console.log('agrs at launches', args);
       console.log(args.limit);
       if (!args.limit) {
         let res = await axios.get('https://api.spacexdata.com/v3/launches');
@@ -77,8 +78,25 @@ const resolvers = {
     },
   },
   Mutation: {
-    async changeLaunch() {
-      console.log('done change information from mutation apollo');
+    async changeLaunches(parent, args) {
+      console.log(args.data);
+      console.log('hi what is null');
+      return {
+        flight_number: args.data.flight_number,
+        mission_name: args.data.mission_name,
+
+        launch_year: args.data.launch_year,
+
+        launch_date_local: args.data.launch_date_local,
+
+        launch_success: args.data.launch_success,
+
+        // rockets: {
+        //   rocket_id: args.data.rocket.rocket_id,
+        //   rocket_name: args.data.rocket.rocket_name,
+        //   rocket_type: args.data.rocket.rocket_type,
+        // },
+      };
     },
   },
 };

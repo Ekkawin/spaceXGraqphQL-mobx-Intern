@@ -15,3 +15,15 @@ code {
 #root {
   height: 100%;
 }
+
+.ant-input {
+  background-color: #1a202c !important;
+  border: none !important;
+  color: #718096 !important;
+}
+#userForm_launch_sucess {
+  color: green !important;
+}
+#userForm_launch_fail {
+  color: red !important;
+}
