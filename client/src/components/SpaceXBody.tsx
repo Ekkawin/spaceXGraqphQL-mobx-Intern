@@ -4,6 +4,7 @@ import { ContentBlock } from './ContentBlock';
 import { stores } from '../stores/dataStore';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
+import axios from 'axios';
 export const SpaceXBody = observer((props) => {
   const { numberOfFetchData, setNumberOfFetchData, data } = props;
   const { launches } = stores;
@@ -42,7 +43,6 @@ export const SpaceXBody = observer((props) => {
 
   useEffect(() => {
     window.addEventListener('scroll', a);
-    stores.setLaunches(data);
 
     return () => {
       window.removeEventListener('scroll', a);

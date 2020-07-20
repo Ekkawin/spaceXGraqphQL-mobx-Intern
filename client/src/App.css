@@ -53,3 +53,21 @@
 .inputbackground {
   background-color: #1a202c;
 }
+
+.launchdata {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  border-width: 1px !important;
+  border-color: #1a202c !important;
+  color: #718096 !important;
+  border-radius: 0.25rem !important;
+}
+.antformoveride {
+  background-color: #1a202c !important;
+  margin: 0% !important;
+  color: white !important;
+}
+.antformoveride > div > label {
+  color: #718096 !important;
+}

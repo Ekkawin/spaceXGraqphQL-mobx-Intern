@@ -1,8 +1,8 @@
-import { SpaceXBody } from 'components/SpaceXBody';
+import { SpaceXBody } from './SpaceXBody';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
-import { Header } from 'components/Header';
+import { Header } from './Header';
 
 const LAUNCHES_QUERY = gql`
   query LaunchesQurey($limit: Int) {
